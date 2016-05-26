@@ -1,0 +1,27 @@
+{
+  "name": "linkedlist",
+  "version": "0.0.1",
+  "description": "Double linked list features",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "async": "^2.0.0-rc.4",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "scripts": {
+    "test": "TestLinkedList.js"
+  },
+  "keywords": [
+    "linked",
+    "list",
+    "structures"
+  ],
+  "author": "Sven Mueller",
+  "license": "LGPL-3.0"
+}
