@@ -1,5 +1,3 @@
-var _ = require('underscore');
-
 var ListNode = function() {
   this.name = "ListNode";
   this._value = {data: null};
@@ -68,7 +66,7 @@ ListNode.prototype.next = function() {
  * @returns {boolean}
  */
 ListNode.prototype.hasPrevious = function() {
-  return (_.isNull(this._previous.data) === false);
+  return (this._previous.data !== null);
 };
 
 
@@ -77,7 +75,7 @@ ListNode.prototype.hasPrevious = function() {
  * @returns {boolean}
  */
 ListNode.prototype.hasNext = function() {
-  return (!_.isNull(this._next.data) === true);
+  return (this._next.data !== null);
 };
 
 ListNode.Create = function() {
