@@ -1,4 +1,5 @@
-var _node = require('./ListNode');
+var _node = require('./ListNode')
+  , ring = require('ring');
 
 /**
  *
@@ -51,7 +52,7 @@ LinkedList.prototype.add = function(data, callback) {
   if (me._dataType === _node) {
     node = this._dataType.Create();
     node.setValue(data);
-  } else if (data instanceof me._dataType) {
+  } else if (ring.instance(data, me._dataType)) {
     node = data;
   } else {
     setNode = false;
