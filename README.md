@@ -8,7 +8,7 @@ An implementation of the concept of double linked lists.
 
 Quick example to get an instance of the linked list:
 ```javascript
-  var LinkedList = require('linkedlist')
+  var LinkedList = require('node-linkedlist')
     , User = require('../Object/User')
     , list = LinkedList.Create(User);
      
@@ -28,7 +28,7 @@ The number of nodes linked to each other in a row.
 
 <b>Example</b>
 ```javascript
-var list = require("linkedlist").Create()
+var list = require("node-linkedlist").Create()
 ...
   console.log(list.size);
 ```
@@ -48,7 +48,7 @@ bottom of the documentation under <a href="#node">List node</a>
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
   , User = require('<path>/User');
 
@@ -58,7 +58,7 @@ var LinkedList = require("linkedlist")
 Alternatively you can publish the constructor directly on create the ''LinkedList'' instance.
 
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , User = require('<path>/User')
   , list = LinkedList.Create(User);
 
@@ -81,7 +81,7 @@ Add a new node to the end of the list.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
   , node = list.node;
 
@@ -107,7 +107,7 @@ a getter method like ''getFirstName'' or ''getFirstname''.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , User = require('<path>/User')
   , list = LinkedList.Create(User);
 
@@ -128,7 +128,7 @@ Get a node by a given position.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 
   ...
@@ -146,7 +146,7 @@ Delete a node from given position.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 
   ...
@@ -163,7 +163,7 @@ Get the first node of the list.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 
   ...
@@ -180,7 +180,7 @@ Get the last node of the list.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 
   ...
@@ -198,7 +198,7 @@ Check if a node is an instance of the internal standard node.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 
   ...
@@ -219,7 +219,7 @@ Removes all nodes from the list.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 
   ...
@@ -236,7 +236,7 @@ Converts the list into an array.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 
   ...
@@ -270,7 +270,7 @@ Check the existence of a previous node.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
  ,  node = null;
   // Traversing forwards 
@@ -298,7 +298,7 @@ You can get it via the property 'node' of the linked list object.
 
 <b>Example</b>
 ```javascript
-var list = require("linkedlist").Create()
+var list = require("node-linkedlist").Create()
   , node = list.node;
 
 var newNode = node.Create();
@@ -314,7 +314,7 @@ Set another node object as next node to the current one.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 ... 
 var last = list.last()
@@ -341,7 +341,7 @@ Get the next node that is referenced to the current node.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 ... 
 var node = list.first()
@@ -360,7 +360,7 @@ Check the existence of a next nodes reference.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 ... 
 var node = list.first()
@@ -380,7 +380,7 @@ Set another node object as previous node to the current one.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
   , node = list.node;
 ...
@@ -409,7 +409,7 @@ Get the previous node that is referenced to the current node.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 ... 
 var node = list.last()
@@ -428,7 +428,7 @@ Check the existence of a previous nodes reference.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
 ... 
 var node = list.last()
@@ -449,7 +449,7 @@ via ''list.add(...)'' if you use the standard node.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
   , Node = list.node;
 ... 
@@ -472,7 +472,7 @@ via ''list.get(position)'' if you use the standard node.
 
 <b>Example</b>
 ```javascript
-var LinkedList = require("linkedlist")
+var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
   , Node = list.node;
 ... 
