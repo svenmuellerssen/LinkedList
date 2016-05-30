@@ -1,6 +1,6 @@
 {
   "name": "node-linkedlist",
-  "version": "0.1.0-rc1",
+  "version": "0.1.1",
   "description": "Double linked list features",
   "main": "index.js",
   "directories": {
