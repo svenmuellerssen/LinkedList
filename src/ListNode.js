@@ -78,6 +78,11 @@ ListNode.prototype.hasNext = function() {
   return (this._next.data !== null);
 };
 
+/**
+ *
+ * @returns {ListNode}
+ * @constructor
+ */
 ListNode.Create = function() {
   return new ListNode();
 };

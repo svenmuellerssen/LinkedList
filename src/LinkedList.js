@@ -1,4 +1,5 @@
-var _node = require('./ListNode');
+var _node = require('./ListNode')
+  , ring = require('ring');
 
 /**
  *
@@ -48,12 +49,12 @@ LinkedList.prototype.add = function(data, callback) {
     , node = null
     , setNode = true;
 
-  if (me._dataType === _node) {
+  if (ring.instance(data, me._dataType)) {
+    node = data;
+  } else if (me._dataType === _node) {
     node = this._dataType.Create();
     node.setValue(data);
-  } else if (data instanceof me._dataType) {
-    node = data;
-  } else {
+  }  else {
     setNode = false;
   }
 
@@ -122,23 +123,24 @@ LinkedList.prototype.searchBy = function(property, value) {
           break;
       }
     };
+
     /**
      *
      */
     var searchPropertyOfCustomNode = function() {
-          var method = 'get' + property.charAt(0).toUpperCase() + property.slice(1);
+      var method = 'get' + property.charAt(0).toUpperCase() + property.slice(1);
 
-          while(currentItem[method]) {
-            if ( (typeof currentItem[method] === 'function' && currentItem[method]() == value) || currentItem[method] == value) {
-              found = currentItem;
-              break;
-            }
-            currentItem = currentItem.next();
-          }
-        };
+      while(currentItem[method]) {
+        if ( (typeof currentItem[method] === 'function' && currentItem[method]() == value) || currentItem[method] == value) {
+          found = currentItem;
+          break;
+        }
+        currentItem = currentItem.next();
+      }
+    };
 
     // Search differently depending on node class.
-    if (currentItem instanceof _node) searchPropertyOfStandardNode();
+    if (ring.instance(currentItem,_node) === true) searchPropertyOfStandardNode();
     else searchPropertyOfCustomNode();
 
     // Set the found node to current iterator item;
@@ -149,6 +151,28 @@ LinkedList.prototype.searchBy = function(property, value) {
     else
       return found;
   }
+};
+
+/**
+ * Get a list node from a specific position.
+ *
+ * @param position
+ * @param raw
+ * @returns {null}
+ */
+LinkedList.prototype.get = function(position, raw) {
+  raw = (raw === true);
+  var currentItem = null;
+
+  if (this._head.next() === null || position <= 1) currentItem = this._head.next();
+  else if (position >= this.size) currentItem = this._last;
+  else {
+    var currentItem = this._head.next(), iterator = 0;
+    for(;iterator < position; iterator++) currentItem = currentItem.next();
+  }
+
+  if (!this.isStdNode(currentItem) || (this.isStdNode(currentItem) && raw)) return currentItem;
+  else return currentItem.getValue();
 };
 
 /**
@@ -182,27 +206,6 @@ LinkedList.prototype.delete = function(position) {
   return this;
 };
 
-/**
- * Get a list node from a specific position.
- *
- * @param position
- * @param raw
- * @returns {null}
- */
-LinkedList.prototype.get = function(position, raw) {
-  raw = (raw === true);
-  var currentItem = null;
-
-  if (this._head.next() === null || position <= 1) currentItem = this._head.next();
-  else if (position >= this.size) currentItem = this._last;
-  else {
-    var currentItem = this._head.next(), iterator = 0;
-    for(;iterator < position; iterator++) currentItem = currentItem.next();
-  }
-
-  if (!this.isStdNode(currentItem) || (this.isStdNode(currentItem) && raw)) return currentItem;
-  else return currentItem.getValue();
-};
 
 /**
  * Get the first list node.
@@ -247,6 +250,7 @@ LinkedList.prototype.previous = function() {
 
 /**
  * Get the next node (when iterating)
+ *
  * @returns {*}
  */
 LinkedList.prototype.next = function() {
@@ -262,23 +266,38 @@ LinkedList.prototype.next = function() {
 
 /**
  * Check of the next node.
+ * @returns {*}
  */
 LinkedList.prototype.hasNext = function() {
   if (this._iteratorItem !== null) return this._iteratorItem.hasNext();
-  return false;
+  else if (this._head.next() !== null) {
+    this._iteratorItem = this._head.next();
+    return this._iteratorItem.hasNext();
+  } else return false;
 };
 
 /**
  * Check of the previous node.
+ *
+ * @returns {*}
  */
 LinkedList.prototype.hasPrevious = function() {
   if (this._iteratorItem !== null) return this._iteratorItem.hasPrevious();
-  return false;
+  else if(this._last !== null) {
+    this._iteratorItem = this._last;
+    this._iteratorItem.hasPrevious();
+  } else  return false;
 };
 
+/**
+ *
+ * @param node
+ * @returns {*}
+ */
 LinkedList.prototype.isStdNode = function(node) {
-  return (node instanceof _node);
+  return ring.instance(node, _node);
 };
+
 /**
  * Remove all nodes from list.
  * @returns {boolean}
@@ -294,7 +313,7 @@ LinkedList.prototype.clean = function() {
   this._head.setNext(null);
   this._last = null;
   this.size = 0;
-  return true;
+  return this;
 };
 
 /**

@@ -9,7 +9,6 @@ var async = require('async')
     ];
 
 describe('Test clean list from nodes functionality', function(done) {
-
   it('Test removing all nodes from collection', function() {
     // Create list with custom nodes.
     var list = LinkedList.Create();
@@ -24,18 +23,23 @@ describe('Test clean list from nodes functionality', function(done) {
         // Check if  there is an error and size of the linked list.
         should.not.exist(err);
         (list.size).should.be.eql(4);
+        var node = null;
 
-        var node = list.first();
-
-        do {
+        for(node = list.first(); list.hasNext(); node = list.next()) {
           should(node).be.not.null();
           (node).should.be.an.Object();
           (node).should.have.property('id');
           (node).should.have.property('username');
           (node).should.have.property('password');
+        }
 
-          node = list.next();
-        } while(list.hasNext());
+        for(node = list.last(); list.hasPrevious(); node = list.previous()) {
+          should(node).be.not.null();
+          (node).should.be.an.Object();
+          (node).should.have.property('id');
+          (node).should.have.property('username');
+          (node).should.have.property('password');
+        }
       });
   });
 });

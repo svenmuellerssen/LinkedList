@@ -61,4 +61,28 @@ describe('Test search functionality', function(done) {
         should(node).be.null();
       });
   });
+
+  //it('Test the search if the node extension has no getter methods but pure properties', function() {
+  //  // Create list with standard nodes.
+  //  var list = LinkedList.Create()
+  //    , User2 = ring.create([list.node, require('./User2')], {});
+  //
+  //  list.setDataType(User2);
+  //
+  //  // Assign values to the list.
+  //  async.eachSeries(
+  //    stdListItems,
+  //    function iterator(node, innerCallback) {
+  //      list.add(node, innerCallback);
+  //    },
+  //    function callback(err) {
+  //      // Check if  there is an error and size of the linked list.
+  //      should.not.exist(err);
+  //      (list.size).should.be.eql(4);
+  //
+  //      // Try the first list node to be available and valid.
+  //      var node = list.searchBy('username', "Name ohne Ende");
+  //
+  //    });
+  //});
 });
