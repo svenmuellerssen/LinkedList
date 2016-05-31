@@ -1,18 +1,21 @@
 {
   "name": "node-linkedlist",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Double linked list features",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ring": "2.1.0"
+  },
   "devDependencies": {
     "should": "*",
     "async": "^2.0.0-rc.4"
   },
   "scripts": {
     "test": [
+      "TestAddSingleNodeObjectToList.js",
       "TestCleanUpList.js",
       "TestCustomNodeBackwardTraversing.js",
       "TestCustomNodeSearchByProperty.js",
@@ -25,11 +28,15 @@
     ]
   },
   "keywords": [
-    "linked list",
-    "lists",
+    "unary tree",
     "structures",
-    "unary tree"
+    "lists",
+    "linked list",
+    "doubly linked list"
   ],
-  "author": "Sven Mueller",
+  "author": {
+    "name": "Sven Mueller",
+    "email": "svenmue@localdomain.org"
+  },
   "license": "LGPL-3.0"
 }

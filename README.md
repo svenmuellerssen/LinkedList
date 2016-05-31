@@ -24,9 +24,11 @@ Quick example to get an instance of the linked list:
 
 <a name="size">
 <h4>size</h4>
+
 The number of nodes linked to each other in a row.
 
-<b>Example</b>
+<strong>Example</strong>
+
 ```javascript
 var list = require("node-linkedlist").Create()
 ...
@@ -34,19 +36,22 @@ var list = require("node-linkedlist").Create()
 ```
 
 <a name="setDataType">
-<h4>setDataType</h4>
+<h4>setDataType(dataType)</h4>
+
 You are not fixed to use ''LinkedList'' as it is with the internal standard node. You can use it to chain
 your own business objects too. The only thing you have to do is to extend the standard node object and publish
 the constructor of you class to the ''LinkedList'' instance.
 To publish your own node class without inherit from the standard node you only have to implement the methods that are described at the
 bottom of the documentation under <a href="#node">List node</a>
-
-<b>Arguments</b>
+<br/>
+<br/>
+<strong>Arguments</strong>
 
 * `dataType` (constructor) - The constructor of the class extending the standard node object.
 * `return` (LinkedList) - The list itself is returned.
 
-<b>Example</b>
+<strong>Example</strong>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
@@ -70,9 +75,11 @@ publishing requires to set a new first node of the published constructor. It is 
 implemented a standard interface.
 
 <a name="add">
-<h4>add</h4>
-Add a new node to the end of the list.
+<h4>add(data[, callback])</h4>
 
+Add a new node to the end of the list.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * `data` (string) - The data to add to the list. It can be a node object too.
@@ -80,6 +87,7 @@ Add a new node to the end of the list.
 * `return` (listObj) - The `LinkedList` instance itself.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
@@ -95,10 +103,12 @@ var LinkedList = require("node-linkedlist")
 ```
 
 <a name="searchBy">
-<h4>searchBy</h4>
+<h4>searchBy(property, value)</h4>
+
 Search a node by one of its properties. If the list contains extended standard nodes it is required to implement
 a getter method like ''getFirstName'' or ''getFirstname''.
-
+<br/>
+<br/>
 <b>Arguments</b>
 
 * `property` (string) - The nodes property to search in the value.
@@ -106,6 +116,7 @@ a getter method like ''getFirstName'' or ''getFirstname''.
 * `return` (node) - The node you searched or null if it can't be found.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , User = require('<path>/User')
@@ -116,17 +127,20 @@ var LinkedList = require("node-linkedlist")
 ```
 
 <a name="get">
-<h4>get</h4>
-Get a node by a given position.
+<h4>get(position[, raw])</h4>
 
+Get a node by a given position.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * `position` (number) - The position of the node that is wanted. If the position less equal '0' or higher than the list size
                         the first or last node is returned.
-* `raw` (boolean) - A flag to get the node itself instead of the value only. Default is false.
+* `raw` (boolean) - A flag to get the node itself instead of the value only. Default is false to get only the value.
 * `return` (Node) - The node at the position or first/last node if the position is less/equal 0 or higher than list size.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -136,15 +150,18 @@ var LinkedList = require("node-linkedlist")
 ```
 
 <a name="delete">
-<h4>delete</h4>
-Delete a node from given position.
+<h4>delete(position)</h4>
 
+Delete a node from given position.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * `position` (number) - The position of the node which has to be removed.
 * `return` (LinkedList) - The list itself is returned.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -154,14 +171,17 @@ var LinkedList = require("node-linkedlist")
 ```
 
 <a name="first">
-<h4>first</h4>
-Get the first node of the list.
+<h4>first()</h4>
 
+Get the first node of the list.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * `return` (node) - The first node in the list.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -171,14 +191,17 @@ var LinkedList = require("node-linkedlist")
 ```
 
 <a name="last">
-<h4>last</h4>
-Get the last node of the list.
+<h4>last()</h4>
 
+Get the last node of the list.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * `return` (node) - The last node in the list.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -188,15 +211,18 @@ var LinkedList = require("node-linkedlist")
 ```
 
 <a name="isStdNode">
-<h4>isStdNode</h4>
-Check if a node is an instance of the internal standard node.
+<h4>isStdNode(node)</h4>
 
+Check if a node is an instance of the internal standard node.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * `node` (object) - The node that will be compared with the constructor of the standard node.
 * `return` (boolean) - True if the given node is a standard node. Otherwise false is returned.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -210,14 +236,17 @@ var LinkedList = require("node-linkedlist")
 ```
 
 <a name="clean">
-<h4>clean</h4>
-Removes all nodes from the list.
+<h4>clean()</h4>
 
+Removes all nodes from the list.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * `return` (LinkedList) - The list itself is returned.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -227,14 +256,17 @@ var LinkedList = require("node-linkedlist")
 ```
 
 <a name="toArray">
-<h4>toArray</h4>
-Converts the list into an array.
+<h4>toArray()</h4>
 
+Converts the list into an array.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * `return` (Array) - All nodes in an array.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -250,25 +282,30 @@ instead of use ''toArray'' and loop over this.
 The ''LinkedList'' has the standard methods implemented you expect from an iterator.
 
 <a name="next">
-<h4>next</h4>
+<h4>next()</h4>
+
 Get the next node in the list.
 
 
 <a name="hasNext">
-<h4>hasNext</h4>
+<h4>hasNext()</h4>
+
 Check the existence of a next node.
 
 
 <a name="previous">
-<h4>previous</h4>
+<h4>previous()</h4>
+
 Get the previous node in the list.
 
 
 <a name="hasPrevious">
-<h4>hasPrevious</h4>
+<h4>hasPrevious()</h4>
+
 Check the existence of a previous node.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
@@ -280,7 +317,7 @@ var LinkedList = require("node-linkedlist")
   }
   
   // or backwards
-  for(node = list.last(); list.HasPrevious(); node.previous()) {
+  for(node = list.last(); list.hasPrevious(); node.previous()) {
    ... 
    ... 
   }
@@ -288,15 +325,18 @@ var LinkedList = require("node-linkedlist")
 
 <h3>List node</h3>
 <a name="node">
-<h4>node (Constructor)</h4>
+<h4>node [Constructor]</h4>
+
 The list node is the standard node object used by the linked list internally if no other node constructor is offered.
 You can get it via the property 'node' of the linked list object.
-
+<br/>
+<br/>
 <b>Arguments</b>
 
 * No arguments
 
 <b>Example</b>
+
 ```javascript
 var list = require("node-linkedlist").Create()
   , node = list.node;
@@ -305,14 +345,17 @@ var newNode = node.Create();
 ```
 
 <a name="setNext">
-<h4>setNext</h4>
-Set another node object as next node to the current one.
+<h4>setNext(nextNode)</h4>
 
+Set another node object as next node to the current one.
+<br/>
+<br/>
 <b>Arguments</b>
 
-* node (object) - A node object of the same datatype of the list.
+* nextNode (object) - A node which has to be referenced as next node.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -332,14 +375,17 @@ last.setNext(node);
 ```
 
 <a name="next">
-<h4>next</h4>
-Get the next node that is referenced to the current node.
+<h4>next()</h4>
 
+Get the next node that is referenced to the current node.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * No argument
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -351,14 +397,17 @@ node = node.next();
 ```
 
 <a name="hasNext">
-<h4>hasNext</h4>
-Check the existence of a next nodes reference.
+<h4>hasNext()</h4>
 
+Check the existence of a next nodes reference.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * No argument
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -371,14 +420,17 @@ if (node.hasNext())
 ```
 
 <a name="setPrevious">
-<h4>setPrevioius</h4>
-Set another node object as previous node to the current one.
+<h4>setPrevious(previousNode)</h4>
 
+Set another node object as previous node to the current one.
+<br/>
+<br/>
 <b>Arguments</b>
 
-* No arguments
+* previousNode (node) - The node which has to be referenced before current node.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
@@ -400,14 +452,17 @@ last.setPrevious(newNode);
 ```
 
 <a name="previous">
-<h4>previous</h4>
-Get the previous node that is referenced to the current node.
+<h4>previous()</h4>
 
+Get the previous node that is referenced to the current node.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * No argument
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -419,14 +474,17 @@ node = node.previous();
 ```
 
 <a name="hasPrevious">
-<h4>hasPrevious</h4>
-Check the existence of a previous nodes reference.
+<h4>hasPrevious()</h4>
 
+Check the existence of a previous nodes reference.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * No argument
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create();
@@ -439,15 +497,18 @@ if (node.hasPrevious())
 ```
 
 <a name="setValue">
-<h4>setValue</h4>
-Set the value that is added to the list. This method is used internally so it is fully transparent
-via ''list.add(...)'' if you use the standard node.
+<h4>setValue(value)</h4>
 
+Set the value that has to be added to the list. This method is used internally so it is fully transparent
+via ''list.add(...)'' if you use the standard node.
+<br/>
+<br/>
 <b>Arguments</b>
 
-* No argument
+* value (mixed) - The value that has to be put to a list via a node.
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()
@@ -462,15 +523,18 @@ node.setNext(newNode);
 ```
 
 <a name="getValue">
-<h4>getValue</h4>
-Get the value that is stored in the standard node. This method is used internally so it is fully transparent
-via ''list.get(position)'' if you use the standard node.
+<h4>getValue()</h4>
 
+Get the value that is stored in a node. This method is used internally so it is fully transparent
+via ''list.get(position)'' if you use the standard node.
+<br/>
+<br/>
 <b>Arguments</b>
 
 * No argument
 
 <b>Example</b>
+
 ```javascript
 var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create()

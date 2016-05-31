@@ -1,5 +1,4 @@
-var ring = require('ring')
-  , _ = require('underscore');
+var ring = require('ring');
 
 var User2 = function() {
   this.name = "User";
@@ -15,8 +14,8 @@ var User2 = function() {
 /**
  * Set a specific object to be the previous object in a chain.
  *
- * @param previousNode {ListNode}
- * @returns {ListNode}
+ * @param previousNode {User}
+ * @returns {User}
  */
 User2.prototype.setPrevious = function(previousNode) {
   this._previous.data = previousNode;
@@ -26,7 +25,7 @@ User2.prototype.setPrevious = function(previousNode) {
 /**
  * Get the previous object.
  *
- * @returns {ListNode}
+ * @returns {User}
  */
 User2.prototype.previous = function() {
   return (this.hasPrevious) ? this._previous.data : null;
@@ -35,8 +34,8 @@ User2.prototype.previous = function() {
 /**
  * Set a specific object to be the next in the chain.
  *
- * @param nextNode {ListNode}
- * @returns {ListNode}
+ * @param nextNode {User}
+ * @returns {User}
  */
 User2.prototype.setNext = function(nextNode) {
   this._next.data = nextNode;
@@ -46,7 +45,7 @@ User2.prototype.setNext = function(nextNode) {
 /**
  * Get the next object in the chain.
  *
- * @returns {ListNode}
+ * @returns {User}
  */
 User2.prototype.next = function() {
   return (this.hasNext()) ? this._next.data : null;
@@ -57,7 +56,7 @@ User2.prototype.next = function() {
  * @returns {boolean}
  */
 User2.prototype.hasNext = function() {
-  return (!_.isNull(this._next.data) === true);
+  return (this._next.data !== null);
 };
 
 /**
@@ -65,7 +64,7 @@ User2.prototype.hasNext = function() {
  * @returns {boolean}
  */
 User2.prototype.hasPrevious = function() {
-  return (_.isNull(this._previous.data) === false);
+  return (this._previous.data !== null);
 };
 
 /**
