@@ -94,7 +94,7 @@ var LinkedList = require("node-linkedlist")
   , node = list.node;
 
   ...
-  list.add('FirstName', function(err, listObj) {
+  list.add({"firstName": "Warden"}, function(err, listObj) {
     if (err) console.log(err);
     else {
       console.log(listObj.size);
@@ -123,7 +123,7 @@ var LinkedList = require("node-linkedlist")
   , list = LinkedList.Create(User);
 
   ...
-  list.searchBy('FirstName', "Warden");
+  list.searchBy('firstName', "Warden");
 ```
 
 <a name="get">

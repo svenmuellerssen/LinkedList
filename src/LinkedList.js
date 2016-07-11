@@ -39,12 +39,38 @@ LinkedList.prototype.setDataType = function(dataType) {
 };
 
 /**
+ *
+ * @param list
+ * @param callback
+ * @returns {LinkedList}
+ */
+LinkedList.prototype.setList = function(list, callback) {
+  list = list || null;
+  var me = this;
+  if(!Array.isArray(list)) {
+    callback({message: 'Error: This format is not supported yet. Array is currently the only type.', code: 0}, null);
+    return this;
+  } else if (list.length == 0) {
+    callback(null, me);
+    return me;
+  } else {
+    list.forEach(function(node) {
+      me.add(node, function() {});
+    });
+
+    callback(null, me);
+    return me;
+  }
+};
+/**
  * Add new list node.
  *
  * @param data {*}
  * @param callback {function}
  */
 LinkedList.prototype.add = function(data, callback) {
+
+  callback = callback || function(err, result) {};
   var me = this
     , node = null
     , setNode = true;
@@ -130,8 +156,8 @@ LinkedList.prototype.searchBy = function(property, value) {
     var searchPropertyOfCustomNode = function() {
       var method = 'get' + property.charAt(0).toUpperCase() + property.slice(1);
 
-      while(currentItem[method]) {
-        if ( (typeof currentItem[method] === 'function' && currentItem[method]() == value) || currentItem[method] == value) {
+      while(currentItem && currentItem[method]) {
+        if ( (typeof currentItem[method] === 'function' && (currentItem[method]() == value) || currentItem[method] == value)) {
           found = currentItem;
           break;
         }
