@@ -44,7 +44,7 @@ LinkedList.prototype.setDataType = function(dataType) {
  * @param callback
  * @returns {LinkedList}
  */
-LinkedList.prototype.setList = function(list, callback) {
+LinkedList.prototype.setItems = function(list, callback) {
   list = list || null;
   var me = this;
   if(!Array.isArray(list)) {
