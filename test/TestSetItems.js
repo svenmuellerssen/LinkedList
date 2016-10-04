@@ -13,7 +13,7 @@ describe('Test set array with items to empty list', function() {
     // Create list with custom nodes.
     var list = LinkedList.Create();
     // Assign values to the custom node and push to the list.
-    list.setList(stdListItems, function callback(err, newList) {
+    list.setItems(stdListItems, function callback(err, newList) {
       // Check if  there is an error and size of the linked list.
       should(err).be.null();
       should(newList.size).be.equal(4);

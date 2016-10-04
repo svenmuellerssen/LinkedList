@@ -74,6 +74,43 @@ It is important to know that if you publish a constructor to the ''LinkedList'' 
 publishing requires to set a new first node of the published constructor. It is planned to realize a mixed-mode of nodes which have
 implemented a standard interface.
 
+<a name="setitems">
+<h4>setItems(data[, callback])</h4>
+
+Set a list of nodes.
+<br/>
+<br/>
+<b>Arguments</b>
+
+* `items` (array) - A list with single items to set as linked list.
+* `callback` (function) - The callback function with parameter `err` and `listObj`.
+* `return` (listObj) - The `LinkedList` instance itself.
+
+<b>Example</b>
+
+```javascript
+var LinkedList = require("node-linkedlist")
+  , list = LinkedList.Create()
+  , nodes = [
+    {id: 23, ...},
+    {id: 54, ...},
+    {id: 43, ...},
+    {id: 12, ...},
+    {id: 87, ...}
+  ];
+
+  ...
+
+  list.setItems(nodes, function(err, listObj) {
+    if (err) console.log(err);
+    else {
+      console.log(listObj.size);
+      // will output the number "5"
+    }
+  });
+
+```
+
 <a name="add">
 <h4>add(data[, callback])</h4>
 

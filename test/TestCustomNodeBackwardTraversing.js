@@ -8,7 +8,7 @@ var async = require('async')
       {id: 23, username: "w5zsdghxfdgh", password: "Test 4", field3: 4567, field4: 342345345345345}
     ]
   , User = require('./User')
-  , user = User.Create()
+  , user = User.instance()
   ;
 
 describe('Test backward traversing functionality', function(done) {
@@ -22,7 +22,7 @@ describe('Test backward traversing functionality', function(done) {
     async.each(
       stdListItems,
       function iterator(node, innerCallback) {
-        var user = User.Create();
+        var user = User.instance();
         user
           .setId(node.id)
           .setUsername(node.username)

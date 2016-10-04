@@ -34,7 +34,7 @@ LinkedList.prototype.setDataType = function(dataType) {
     this._dataType = dataType;
   }
 
-  this._head = this._dataType.Create();
+  this._head = this._dataType.instance();
   return this;
 };
 
@@ -44,7 +44,7 @@ LinkedList.prototype.setDataType = function(dataType) {
  * @param callback
  * @returns {LinkedList}
  */
-LinkedList.prototype.setList = function(list, callback) {
+LinkedList.prototype.setItems = function(list, callback) {
   list = list || null;
   var me = this;
   if(!Array.isArray(list)) {
@@ -78,7 +78,7 @@ LinkedList.prototype.add = function(data, callback) {
   if (ring.instance(data, me._dataType)) {
     node = data;
   } else if (me._dataType === _node) {
-    node = this._dataType.Create();
+    node = this._dataType.instance();
     node.setValue(data);
   }  else {
     setNode = false;

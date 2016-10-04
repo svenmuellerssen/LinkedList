@@ -25,7 +25,7 @@ describe('Test adding single node object to the list', function(done) {
         (list.size).should.be.eql(4);
 
         // Create a new standard node object.
-        var node = list.node.Create();
+        var node = list.node.instance();
 
         // Set new node value.
         node.setValue({

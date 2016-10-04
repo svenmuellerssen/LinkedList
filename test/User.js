@@ -138,7 +138,7 @@ User.prototype.hasPrevious = function() {
  * @returns {User}
  * @constructor
  */
-User.Create = function() {
+User.instance = function() {
   return new User();
 };
 

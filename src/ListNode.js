@@ -83,7 +83,7 @@ ListNode.prototype.hasNext = function() {
  * @returns {ListNode}
  * @constructor
  */
-ListNode.Create = function() {
+ListNode.instance = function() {
   return new ListNode();
 };
 
