@@ -11,8 +11,9 @@ var LinkedList = function(dataClass) {
   this._last = null;
   this._iteratorItem = null;
   this._dataType = null;
-
+  this._foundPosition = 0;
   this.size = 0;
+
   this.setDataType(dataClass);
 };
 
@@ -115,9 +116,11 @@ LinkedList.prototype.searchBy = function(property, value) {
   if (this._head.next() === null) {
     return null;
   } else {
-    var currentItem = this._head.next()
+    var me = this
+      , currentItem = this._head.next()
       , found = null;
 
+    me._foundPosition = 0;
     /**
      * Search a specific node by its property
      */
@@ -126,28 +129,30 @@ LinkedList.prototype.searchBy = function(property, value) {
         , typeOfValue = (nodeValue[property]) ? typeof nodeValue[property] : null;
 
       if (typeOfValue !== null)
-      switch(typeOfValue) {
-        case 'number':
-        case 'string':
-        case 'boolean':
-          while(currentItem !== null && currentItem.getValue()[property]) {
-            if (currentItem.getValue()[property] === value) {
-              found = currentItem;
-              break;
+        switch(typeOfValue) {
+          case 'number':
+          case 'string':
+          case 'boolean':
+            while(currentItem !== null && currentItem.getValue()[property]) {
+              if (currentItem.getValue()[property] === value) {
+                found = currentItem;
+                break;
+              }
+              currentItem = currentItem.next();
+              me._foundPosition++;
             }
-            currentItem = currentItem.next();
-          }
-          break;
-        case 'function':
-          while(currentItem !== null && currentItem.getValue()[property]) {
-            if (currentItem.getValue()[property]() === value) {
-              found = currentItem;
-              break;
+            break;
+          case 'function':
+            while(currentItem !== null && currentItem.getValue()[property]) {
+              if (currentItem.getValue()[property]() === value) {
+                found = currentItem;
+                break;
+              }
+              currentItem = currentItem.next();
+              me._foundPosition++;
             }
-            currentItem = currentItem.next();
-          }
-          break;
-      }
+            break;
+        }
     };
 
     /**
@@ -162,6 +167,7 @@ LinkedList.prototype.searchBy = function(property, value) {
           break;
         }
         currentItem = currentItem.next();
+        me._foundPosition++;
       }
     };
 
@@ -193,7 +199,8 @@ LinkedList.prototype.get = function(position, raw) {
   if (this._head.next() === null || position <= 1) currentItem = this._head.next();
   else if (position >= this.size) currentItem = this._last;
   else {
-    var currentItem = this._head.next(), iterator = 0;
+    var iterator = 0;
+    currentItem = this._head.next();
     for(;iterator < position; iterator++) currentItem = currentItem.next();
   }
 
@@ -232,6 +239,13 @@ LinkedList.prototype.delete = function(position) {
   return this;
 };
 
+/**
+ *
+ * @returns {number}
+ */
+LinkedList.prototype.getPosition = function() {
+  return this._foundPosition;
+};
 
 /**
  * Get the first list node.
