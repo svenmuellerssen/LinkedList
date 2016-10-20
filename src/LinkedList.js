@@ -216,10 +216,27 @@ LinkedList.prototype.get = function(position, raw) {
  */
 LinkedList.prototype.delete = function(position) {
   var node = this.get(position, true);
-  var buffer = node.previous();
-  buffer.setNext(node.next());
-  node.setPrevious(null).setNext(null);
-  if (position === this.size) this._last = buffer;
+  // Node is the first item in the list
+  if (node.previous() === null) {
+    // Node was the only one in the list.
+    if (node.next() === null) {
+      this._head.setNext(null);
+      node = null;
+    } else {
+      // Node has a following item.
+      var next = node.next();
+      this._head.setNext(next);
+      next.setPrevious(this._head);
+      node = null;
+      if (position === this.size) this._last = next;
+    }
+  } else {
+    var buffer = node.previous();
+    buffer.setNext(node.next());
+    node.setPrevious(null).setNext(null);
+    if (position === this.size) this._last = buffer;
+  }
+
   this.size--;
 
   /**
