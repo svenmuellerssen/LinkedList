@@ -3,7 +3,7 @@ var _node = require('./ListNode')
 
 /**
  *
- * @param dataClass
+ * @param {function} dataClass
  * @constructor
  */
 var LinkedList = function(dataClass) {
@@ -27,7 +27,7 @@ LinkedList.prototype.node = _node;
 /**
  * Set the class constructor to be used in this list instance.
  *
- * @param dataType
+ * @param {function} dataType
  * @returns {LinkedList}
  */
 LinkedList.prototype.setDataType = function(dataType) {
@@ -35,14 +35,14 @@ LinkedList.prototype.setDataType = function(dataType) {
     this._dataType = dataType;
   }
 
-  this._head = this._dataType.instance();
+  this._head = _node.instance();
   return this;
 };
 
 /**
  *
- * @param list
- * @param callback
+ * @param {array} list
+ * @param {function} callback
  * @returns {LinkedList}
  */
 LinkedList.prototype.setItems = function(list, callback) {
@@ -66,8 +66,9 @@ LinkedList.prototype.setItems = function(list, callback) {
 /**
  * Add new list node.
  *
- * @param data {*}
- * @param callback {function}
+ * @param {null|*} data
+ * @param {function} callback
+ * @return {LinkedList}
  */
 LinkedList.prototype.add = function(data, callback) {
 
@@ -108,8 +109,8 @@ LinkedList.prototype.add = function(data, callback) {
  * Search a list node by a node property.
  * This can be a normal property or a method name.
  *
- * @param property {string}
- * @param value {*}
+ * @param {string} property
+ * @param {*} value
  * @returns {object}
  */
 LinkedList.prototype.searchBy = function(property, value) {
@@ -121,8 +122,9 @@ LinkedList.prototype.searchBy = function(property, value) {
       , found = null;
 
     me._foundPosition = 0;
+
     /**
-     * Search a specific node by its property
+     * Search a node by its property.
      */
     var searchPropertyOfStandardNode = function() {
       var nodeValue = currentItem.getValue()
@@ -156,7 +158,7 @@ LinkedList.prototype.searchBy = function(property, value) {
     };
 
     /**
-     *
+     * Search of a custom node.
      */
     var searchPropertyOfCustomNode = function() {
       var method = 'get' + property.charAt(0).toUpperCase() + property.slice(1);
@@ -186,11 +188,11 @@ LinkedList.prototype.searchBy = function(property, value) {
 };
 
 /**
- * Get a list node from a specific position.
+ * Get a node from a given position in the list.
  *
- * @param position
- * @param raw
- * @returns {null}
+ * @param {number} position
+ * @param {boolean} raw
+ * @returns {null|*}
  */
 LinkedList.prototype.get = function(position, raw) {
   raw = (raw === true);
@@ -209,9 +211,9 @@ LinkedList.prototype.get = function(position, raw) {
 };
 
 /**
- * Remove a list node by its position.
+ * Remove a node by its position in the list.
  *
- * @param position {number}
+ * @param {number} position
  * @returns {LinkedList}
  */
 LinkedList.prototype.delete = function(position) {
@@ -231,6 +233,7 @@ LinkedList.prototype.delete = function(position) {
       if (position === this.size) this._last = next;
     }
   } else {
+    // Remove node from given position.
     var buffer = node.previous();
     buffer.setNext(node.next());
     node.setPrevious(null).setNext(null);
@@ -238,25 +241,13 @@ LinkedList.prototype.delete = function(position) {
   }
 
   this.size--;
-
-  /**
-   * Test
-   */
-  //var currentItem = this._head.next()
-  //  , buffer = null
-  //  , counter = 0;
-  //while(currentItem !== null) {
-  //  counter++;
-  //  buffer = currentItem;
-  //  currentItem = currentItem.next();
-  //}
-  //
-  //console.log(counter);
-  //console.log(buffer.getValue());
   return this;
 };
 
 /**
+ * Get the position from last found node.
+ * On searching a node the position where it was found is stored and
+ * can be given back.
  *
  * @returns {number}
  */
@@ -265,7 +256,7 @@ LinkedList.prototype.getPosition = function() {
 };
 
 /**
- * Get the first list node.
+ * Get the first node in the list.
  *
  * @returns {*}
  */
@@ -323,7 +314,7 @@ LinkedList.prototype.next = function() {
 
 /**
  * Check of the next node.
- * @returns {*}
+ * @returns {boolean}
  */
 LinkedList.prototype.hasNext = function() {
   if (this._iteratorItem !== null) return this._iteratorItem.hasNext();
@@ -336,7 +327,7 @@ LinkedList.prototype.hasNext = function() {
 /**
  * Check of the previous node.
  *
- * @returns {*}
+ * @returns {boolean}
  */
 LinkedList.prototype.hasPrevious = function() {
   if (this._iteratorItem !== null) return this._iteratorItem.hasPrevious();
@@ -349,7 +340,7 @@ LinkedList.prototype.hasPrevious = function() {
 /**
  *
  * @param node
- * @returns {*}
+ * @returns {boolean}
  */
 LinkedList.prototype.isStdNode = function(node) {
   return ring.instance(node, _node);
@@ -357,7 +348,7 @@ LinkedList.prototype.isStdNode = function(node) {
 
 /**
  * Remove all nodes from list.
- * @returns {boolean}
+ * @returns {LinkedList}
  */
 LinkedList.prototype.clean = function() {
   var node = this._last;
@@ -393,9 +384,8 @@ LinkedList.prototype.toArray = function() {
 
 /**
  * Create a new instance of the list.
- * @param classConstructor
+ * @param {function} classConstructor
  * @returns {LinkedList}
- * @constructor
  */
 LinkedList.Create = function(classConstructor) {
   if (classConstructor === null || classConstructor === void 0 || typeof classConstructor !== 'function')

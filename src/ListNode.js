@@ -6,6 +6,7 @@ var ListNode = function() {
 };
 
 /**
+ * Set the node value.
  *
  * @param value
  */
@@ -14,18 +15,20 @@ ListNode.prototype.setValue = function(value) {
 };
 
 /**
+ * Get the node value.
  *
- * @returns {null}
+ * @returns {null|*}
  */
 ListNode.prototype.getValue = function() {
   return this._value.data;
 };
-  /**
-   * Set a specific object to be the previous object in a chain.
-   *
-   * @param previousNode {ListNode}
-   * @returns {ListNode}
-   */
+
+/**
+ * Set a node object to be the previous object of the current one.
+ *
+ * @param {ListNode} previousNode
+ * @returns {ListNode}
+ */
 ListNode.prototype.setPrevious = function(previousNode) {
   this._previous.data = previousNode;
   return this;
@@ -41,9 +44,9 @@ ListNode.prototype.previous = function() {
 };
 
   /**
-   * Set a specific object to be the next in the chain.
+   * Set a node object to be the next in the list.
    *
-   * @param nextNode {ListNode}
+   * @param {ListNode} nextNode
    * @returns {ListNode}
    */
 ListNode.prototype.setNext = function(nextNode) {
@@ -52,7 +55,7 @@ ListNode.prototype.setNext = function(nextNode) {
 };
 
   /**
-   * Get the next object in the chain.
+   * Get the next object in the list.
    *
    * @returns {ListNode}
    */
@@ -62,6 +65,7 @@ ListNode.prototype.next = function() {
 
 
 /**
+ * Check if the current node has a previous one.
  *
  * @returns {boolean}
  */
@@ -71,7 +75,7 @@ ListNode.prototype.hasPrevious = function() {
 
 
 /**
- *
+ * Check if the current node has a next one.
  * @returns {boolean}
  */
 ListNode.prototype.hasNext = function() {
@@ -79,9 +83,9 @@ ListNode.prototype.hasNext = function() {
 };
 
 /**
+ * Create a new node instance.
  *
  * @returns {ListNode}
- * @constructor
  */
 ListNode.instance = function() {
   return new ListNode();
